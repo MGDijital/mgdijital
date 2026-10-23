@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1730">
-  <meta name="description" content="Yangın söndürme ve teknik servis ekipleri için dijital servis formları, müşteri imzası, otomatik PDF ve merkezi servis arşivi.">
+  <meta name="description" content="Bakım, onarım ve teknik servis ekipleri için dijital servis formları, müşteri imzası, otomatik PDF ve merkezi servis arşivi.">
   <title>MG Dijital | Dijital Servis Formları</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
       --display: 'Manrope', sans-serif;
       --wrap: 1160px;
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body { margin: 0; font-family: var(--body); color: var(--ink); background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -53,14 +54,25 @@
     .btn-light { color: var(--navy); background: white; }
     .arrow { font-size: 1.12rem; line-height: 1; }
 
+    /* Yükleme Ekranı (Preloader) Stilleri */
+    #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: #ffffff; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
+    .loader-content { text-align: center; }
+    .loader-logo { max-height: 500px; width: auto; margin-bottom: 25px; animation: pulseLogo 2s infinite ease-in-out; border-radius: 10px; }
+    .loader-spinner { width: 32px; height: 32px; border: 3px solid #e0e0e0; border-top: 3px solid var(--blue); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite; }
+    @keyframes pulseLogo { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.8; } }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .preloader-hidden { opacity: 0 !important; visibility: hidden !important; }
+
+    /* Logo Stili */
+    .site-logo { max-height: 90px; width: auto; object-fit: contain; border-radius: 8px; transform: scale(1.4); transform-origin: center; }
+
     /* Navigation */
     .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(10, 22, 45, .93); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.08); transition: box-shadow .22s ease, background .22s ease; }
     .site-nav.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,.14); background: rgba(10,22,45,.98); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 26px; }
     .brand { display: inline-flex; align-items: center; gap: 11px; color: white; flex-shrink: 0; }
-    .brand-mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; color: white; background: linear-gradient(145deg, #4e8cff, #2460d8); font: 800 1rem var(--display); letter-spacing: -.08em; box-shadow: 0 6px 18px rgba(55,120,246,.3); }
     .brand-name { display: flex; flex-direction: column; line-height: 1.12; }
-    .brand-name strong { font: 800 1rem var(--display); letter-spacing: -.035em; }
+    .brand-name strong { font: 800 1.05rem var(--display); letter-spacing: -.035em; }
     .brand-name span { color: #9dafce; font-size: .66rem; letter-spacing: .045em; margin-top: 4px; }
     .nav-links { display: flex; align-items: center; gap: 27px; }
     .nav-links > a:not(.btn) { color: #bec9dc; font-size: .84rem; font-weight: 600; transition: color .2s ease; }
@@ -290,7 +302,7 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
-  
+
     /* Responsive refinements */
     html { overflow-x: clip; }
     body { overflow-x: clip; }
@@ -352,10 +364,20 @@
   </style>
 </head>
 <body>
+
+  <!-- Kurumsal Yükleme Ekranı (Preloader) -->
+  <div id="preloader">
+    <div class="loader-content">
+      <img src="img/logo.png" alt="MG Dijital Yükleniyor" class="loader-logo">
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
   <header class="site-nav" id="topNav">
     <div class="wrap nav-inner">
       <a class="brand" href="#anasayfa" aria-label="MG Dijital ana sayfa">
-        <span class="brand-mark">MG</span>
+        <!-- Logo Entegre Edildi -->
+        <img src="img/logo.png" alt="MG Dijital Logo" class="site-logo">
         <span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">☰</button>
@@ -593,7 +615,6 @@
     <section class="content-section about-section" id="hakkimda">
       <div class="wrap about-grid">
         <div class="about-visual">
-          <div class="about-logo">MG</div>
           <div><h3>Gerçek iş süreçlerinden doğan bir dijital çözüm.</h3><p>MG Dijital Tasarım ve Web Çözümleri tarafından geliştirilen, servis ekiplerinin günlük işini kolaylaştırmaya odaklanan bir platform.</p></div>
         </div>
         <div class="about-copy">
@@ -626,7 +647,11 @@
   <footer>
     <div class="wrap footer-main">
       <div class="footer-brand">
-        <a class="brand" href="#anasayfa"><span class="brand-mark">MG</span><span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span></a>
+        <a class="brand" href="#anasayfa">
+          <!-- Footer Logosu -->
+          <img src="img/logo.png" alt="MG Dijital Logo" class="site-logo">
+          <span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span>
+        </a>
         <p>Bakım, onarım ve teknik servis süreçleri için dijital form, imza ve arşiv çözümü.</p>
       </div>
       <div class="footer-links"><a href="#cozum">Çözüm</a><a href="#ozellikler">Özellikler</a><a href="#sektorler">Sektörler</a><a href="mailto:info@mgdijitalcozumler.com">E-posta</a><a href="[LINKEDIN]" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
@@ -635,7 +660,18 @@
   </footer>
 
   <script>
+    // Preloader ve Menü İşlemleri
     (() => {
+      // Yükleme ekranı (Preloader) gizleme
+      window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        if(preloader) {
+          setTimeout(function() {
+            preloader.classList.add('preloader-hidden');
+          }, 1000); // 0.6 saniyelik şık bir geçiş
+        }
+      });
+
       const nav = document.getElementById('topNav');
       const toggle = document.getElementById('menuToggle');
       const links = document.getElementById('navLinks');
@@ -659,7 +695,10 @@
           toggle.textContent = '☰';
         });
       });
-      year.textContent = new Date().getFullYear();
+
+      if(year) {
+        year.textContent = new Date().getFullYear();
+      }
     })();
   </script>
 </body>
