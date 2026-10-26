@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Arama motorlarının sitenizi daha iyi anlaması için site haritası yolu:
+# (İleride bir sitemap.xml oluşturduğunuzda başındaki '#' işaretini kaldırıp alan adınızı güncelleyin)
+# Sitemap: https://www.sitenizinadi.com/sitemap.xml
