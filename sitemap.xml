@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Ana Sayfa -->
+  <url>
+    <loc>https://www.mgdijitalcozumler.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- İletişim Sayfası -->
+  <url>
+    <loc>https://www.mgdijitalcozumler.com/iletisim.html</loc>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Demo Sayfası -->
+  <url>
+    <loc>https://www.mgdijitalcozumler.com/demo/index.html</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
