@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2TWJJZHHZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-X2TWJJZHHZ');
-  </script>
+  <!-- GA4, analitik izni verildikten sonra /js/mg-analytics-events.js ile yuklenir. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1730">
@@ -369,303 +362,313 @@
       .app-stat { padding: 6px; }
       .app-stat span { font-size: .53rem; }
     }
+
+    /* Analitik tercihleri - sayfa tasarimindan bagimsiz */
+    .mg-consent { position: fixed; z-index: 100000; bottom: 16px; left: 16px; right: 16px; max-width: 670px; margin: 0 auto; padding: 18px 20px; background: #fff; border: 1px solid #dbe4f1; border-radius: 14px; box-shadow: 0 12px 45px rgba(5,16,35,.28); color: #14213a; }
+    .mg-consent[hidden] { display: none !important; }
+    .mg-consent p { margin: 7px 0 13px; font-size: .85rem; line-height: 1.5; }
+    .mg-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .mg-consent-actions button { cursor: pointer; border: 1px solid #cdd8e8; border-radius: 8px; padding: 9px 13px; background: #f3f6fc; color: #14213a; font-weight: 700; }
+    .mg-consent-actions button[data-mg-consent="accept"] { background: #3778f6; border-color: #3778f6; color: white; }
+    .mg-consent-settings { cursor: pointer; border: 0; background: none; padding: 0; text-decoration: underline; color: inherit; font: inherit; }
   </style>
 </head>
 <body>
 
-  <!-- Kurumsal Yükleme Ekranı (Preloader) -->
-  <div id="preloader">
-    <div class="loader-content">
-      <img src="img/logo.png" alt="MG Dijital Yükleniyor" class="loader-logo">
-      <div class="loader-spinner"></div>
-    </div>
+<!-- Kurumsal Yükleme Ekranı (Preloader) -->
+<div id="preloader">
+  <div class="loader-content">
+    <img src="img/logo.png" alt="MG Dijital Yükleniyor" class="loader-logo">
+    <div class="loader-spinner"></div>
   </div>
+</div>
 
-  <header class="site-nav" id="topNav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#anasayfa" aria-label="MG Dijital ana sayfa">
-        <!-- Logo Entegre Edildi -->
-        <img src="img/logo.png" alt="MG Dijital Logo" class="site-logo">
-        <span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">☰</button>
-      <nav class="nav-links" id="navLinks" aria-label="Ana menü">
-        <a href="#cozum">Çözüm</a>
-        <a href="#ozellikler">Özellikler</a>
-        <a href="#nasil-calisir">Nasıl Çalışır?</a>
-        <a href="#sektorler">Sektörler</a>
-        <a href="#hakkimda">Geliştirici</a>
-        <a class="btn btn-primary" href="iletisim.html">Platformu Görüşelim<span class="arrow">↗</span></a>
-      </nav>
-    </div>
-  </header>
+<header class="site-nav" id="topNav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#anasayfa" aria-label="MG Dijital ana sayfa" data-mg-event="mg_nav_click" data-mg-label="home_logo" data-mg-placement="header">
+      <!-- Logo Entegre Edildi -->
+      <img src="img/logo.png" alt="MG Dijital Logo" class="site-logo">
+      <span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" data-mg-event="mg_menu_toggle" data-mg-label="mobile_menu" data-mg-placement="header" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="#cozum" data-mg-event="mg_nav_click" data-mg-label="solution" data-mg-placement="header">Çözüm</a>
+      <a href="#ozellikler" data-mg-event="mg_nav_click" data-mg-label="features" data-mg-placement="header">Özellikler</a>
+      <a href="#nasil-calisir" data-mg-event="mg_nav_click" data-mg-label="how_it_works" data-mg-placement="header">Nasıl Çalışır?</a>
+      <a href="#sektorler" data-mg-event="mg_nav_click" data-mg-label="sectors" data-mg-placement="header">Sektörler</a>
+      <a href="#hakkimda" data-mg-event="mg_nav_click" data-mg-label="developer" data-mg-placement="header">Geliştirici</a>
+      <a class="btn btn-primary" href="iletisim.html" data-mg-event="mg_contact_click" data-mg-label="platform_discussion" data-mg-placement="header">Platformu Görüşelim<span class="arrow">↗</span></a>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" id="anasayfa">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="hero-tag"><span class="status-dot"></span> Teknik servis için dijital form platformu</div>
-          <h1>Servis formları kâğıtta değil, <em>dijitalde.</em></h1>
-          <p>Tüm periyodik bakım ve arıza müdahale süreçlerinizi tek bir akıllı platformda toplayın. Saha ekipleriniz formu anında doldursun, onayı alsın ve PDF raporunuz otomatik olarak oluşsun.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="demo/index.html">Canlı Demoyu Deneyin <span class="arrow">↗</span></a>
-            <a class="btn btn-ghost" href="#cozum">Özellikleri Keşfet <span class="arrow">↓</span></a>
-          </div>
-          <div class="hero-proof">
-            <span><b class="check">✓</b> Dijital imza</span>
-            <span><b class="check">✓</b> Otomatik PDF</span>
-            <span><b class="check">✓</b> Merkezi arşiv</span>
-          </div>
+<main>
+  <section class="hero" id="anasayfa" data-mg-section="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="hero-tag"><span class="status-dot"></span> Teknik servis için dijital form platformu</div>
+        <h1>Servis formları kâğıtta değil, <em>dijitalde.</em></h1>
+        <p>Tüm periyodik bakım ve arıza müdahale süreçlerinizi tek bir akıllı platformda toplayın. Saha ekipleriniz formu anında doldursun, onayı alsın ve PDF raporunuz otomatik olarak oluşsun.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="demo/index.html" data-mg-event="mg_demo_click" data-mg-label="live_demo" data-mg-placement="hero">Canlı Demoyu Deneyin <span class="arrow">↗</span></a>
+          <a class="btn btn-ghost" href="#cozum" data-mg-event="mg_nav_click" data-mg-label="explore_features" data-mg-placement="hero">Özellikleri Keşfet <span class="arrow">↓</span></a>
         </div>
+        <div class="hero-proof">
+          <span><b class="check">✓</b> Dijital imza</span>
+          <span><b class="check">✓</b> Otomatik PDF</span>
+          <span><b class="check">✓</b> Merkezi arşiv</span>
+        </div>
+      </div>
 
-        <div class="hero-visual" aria-label="Dijital servis formu platformunun örnek ekran tasarımı">
-          <div class="visual-glow"></div>
-          <div class="app-window">
-            <div class="window-bar">
-              <div class="window-dots"><i></i><i></i><i></i></div>
-              <span class="window-label">MG DİJİTAL / SERVİS PANELİ</span>
-              <span class="window-label">●</span>
-            </div>
-            <div class="app-content">
-              <aside class="app-sidebar" aria-hidden="true">
-                <div class="mini-brand">MG Dijital</div>
-                <div class="mini-nav active"><i>▦</i> Panel</div>
-                <div class="mini-nav"><i>≡</i> Servis Formları</div>
-                <div class="mini-nav"><i>♧</i> Firmalar</div>
-                <div class="mini-nav"><i>⌕</i> Arşiv</div>
-                <div class="mini-nav"><i>⚙</i> Ayarlar</div>
-              </aside>
-              <div class="app-main">
-                <div class="app-top">
-                  <div><small>SERVİS YÖNETİMİ</small><strong>Form özeti</strong></div>
-                  <span class="app-chip">● İmzaya hazır</span>
-                </div>
-                <div class="app-cards">
-                  <div class="app-stat"><span>Bugünkü formlar</span><strong>08</strong></div>
-                  <div class="app-stat"><span>İmza bekleyen</span><strong>02</strong></div>
-                  <div class="app-stat"><span>Arşivlenen</span><strong>146</strong></div>
-                </div>
-                <div class="service-sheet">
-                  <div class="sheet-head"><strong>Bakım Sistemi Servis Formu</strong><span>YS-2026-0148</span></div>
-                  <div class="sheet-line"><span>İşlem türü</span><b>Periyodik bakım</b></div>
-                  <div class="sheet-line"><span>Müşteri</span><b>Örnek İşletme A.Ş.</b></div>
-                  <div class="sheet-line"><span>Kontrol sonucu</span><b>Kontrol tamamlandı</b></div>
-                  <div class="sheet-bottom">
-                    <div class="signature"><span>İmza:</span><span class="signature-mark">Onaylandı</span></div>
-                    <span class="pdf-pill">▣ PDF hazır</span>
-                  </div>
+      <div class="hero-visual" aria-label="Dijital servis formu platformunun örnek ekran tasarımı">
+        <div class="visual-glow"></div>
+        <div class="app-window">
+          <div class="window-bar">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <span class="window-label">MG DİJİTAL / SERVİS PANELİ</span>
+            <span class="window-label">●</span>
+          </div>
+          <div class="app-content">
+            <aside class="app-sidebar" aria-hidden="true">
+              <div class="mini-brand">MG Dijital</div>
+              <div class="mini-nav active"><i>▦</i> Panel</div>
+              <div class="mini-nav"><i>≡</i> Servis Formları</div>
+              <div class="mini-nav"><i>♧</i> Firmalar</div>
+              <div class="mini-nav"><i>⌕</i> Arşiv</div>
+              <div class="mini-nav"><i>⚙</i> Ayarlar</div>
+            </aside>
+            <div class="app-main">
+              <div class="app-top">
+                <div><small>SERVİS YÖNETİMİ</small><strong>Form özeti</strong></div>
+                <span class="app-chip">● İmzaya hazır</span>
+              </div>
+              <div class="app-cards">
+                <div class="app-stat"><span>Bugünkü formlar</span><strong>08</strong></div>
+                <div class="app-stat"><span>İmza bekleyen</span><strong>02</strong></div>
+                <div class="app-stat"><span>Arşivlenen</span><strong>146</strong></div>
+              </div>
+              <div class="service-sheet">
+                <div class="sheet-head"><strong>Bakım Sistemi Servis Formu</strong><span>YS-2026-0148</span></div>
+                <div class="sheet-line"><span>İşlem türü</span><b>Periyodik bakım</b></div>
+                <div class="sheet-line"><span>Müşteri</span><b>Örnek İşletme A.Ş.</b></div>
+                <div class="sheet-line"><span>Kontrol sonucu</span><b>Kontrol tamamlandı</b></div>
+                <div class="sheet-bottom">
+                  <div class="signature"><span>İmza:</span><span class="signature-mark">Onaylandı</span></div>
+                  <span class="pdf-pill">▣ PDF hazır</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="floating-note"><span class="floating-icon">✓</span><span><strong>Form tamamlandı</strong><small>İmzalı rapor arşive eklendi</small></span></div>
+        </div>
+        <div class="floating-note"><span class="floating-icon">✓</span><span><strong>Form tamamlandı</strong><small>İmzalı rapor arşive eklendi</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip" aria-label="Platformun temel yetenekleri">
+    <div class="wrap trust-inner">
+      <div class="trust-copy">Servis sürecinin başından arşivine kadar</div>
+      <div class="trust-items">
+        <span><i>✓</i> Dijital kayıt</span>
+        <span><i>✓</i> Yetkili imzası</span>
+        <span><i>✓</i> PDF raporlama</span>
+        <span><i>✓</i> Hızlı arama</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="content-section problem-section" id="cozum" data-mg-section="solution">
+    <div class="wrap problem-grid">
+      <div>
+        <span class="eyebrow">Sorun ve çözüm</span>
+        <h2>Sahada iş tamam; evrak yükü geride kalsın.</h2>
+        <p class="section-intro">Servis sahada tamamlandıktan sonra başlayan evrak, imza ve arşiv takibini daha düzenli bir iş akışına dönüştürün.</p>
+        <div class="problem-list">
+          <article class="problem-item">
+            <span class="problem-symbol">!</span>
+            <div><strong>Eksik veya okunaksız formlar</strong><p>Elle doldurulan kayıtlar sonradan anlaşılması zor bilgilere ve tekrar işlere neden olabilir.</p></div>
+          </article>
+          <article class="problem-item">
+            <span class="problem-symbol">⌕</span>
+            <div><strong>Geçmiş kayda ulaşmak zor</strong><p>Dosyalar arasında müşteri, tarih veya yapılan işlem bazında arama yapmak zaman alır.</p></div>
+          </article>
+          <article class="problem-item">
+            <span class="problem-symbol">↻</span>
+            <div><strong>Tekrarlanan ofis işleri</strong><p>Formu temize çekmek, PDF hazırlamak ve belgeyi doğru yerde saklamak ek iş yükü oluşturur.</p></div>
+          </article>
         </div>
       </div>
-    </section>
-
-    <div class="trust-strip" aria-label="Platformun temel yetenekleri">
-      <div class="wrap trust-inner">
-        <div class="trust-copy">Servis sürecinin başından arşivine kadar</div>
-        <div class="trust-items">
-          <span><i>✓</i> Dijital kayıt</span>
-          <span><i>✓</i> Yetkili imzası</span>
-          <span><i>✓</i> PDF raporlama</span>
-          <span><i>✓</i> Hızlı arama</span>
+      <div class="solution-panel">
+        <span class="eyebrow">MG Dijital ile</span>
+        <h3>Sahada dijital kayıt, ofiste hazır rapor.</h3>
+        <div class="solution-list">
+          <div class="solution-row"><span class="solution-check">✓</span><div><strong>Tek ekrandan dijital form</strong><p>Bakım, arıza, onarım ve keşif kayıtlarını aynı platformda tutun.</p></div></div>
+          <div class="solution-row"><span class="solution-check">✓</span><div><strong>Azalan iş ve kâğıt yükü</strong><p>Fiziksel evrakları ortadan kaldırarak operasyonel süreçlerinizi hızlandırın ve zamandan tasarruf edin.</p></div></div>
+          <div class="solution-row"><span class="solution-check">✓</span><div><strong>Teknisyen ve müşteri imzası</strong><p>Servis kaydına ilgili kişilerin imzalarını ekleyin.</p></div></div>
+          <div class="solution-row"><span class="solution-check">✓</span><div><strong>PDF oluşturma ve arşivleme</strong><p>Formu standart bir rapora dönüştürün, daha sonra kolayca bulun.</p></div></div>
+          <div class="solution-row"><span class="solution-check">✓</span><div><strong>Firma ve kullanıcı yönetimi</strong><p>Müşteri kayıtlarını düzenli tutun, role göre erişimleri yönetin.</p></div></div>
         </div>
       </div>
     </div>
+  </section>
 
-    <section class="content-section problem-section" id="cozum">
-      <div class="wrap problem-grid">
-        <div>
-          <span class="eyebrow">Sorun ve çözüm</span>
-          <h2>Sahada iş tamam; evrak yükü geride kalsın.</h2>
-          <p class="section-intro">Servis sahada tamamlandıktan sonra başlayan evrak, imza ve arşiv takibini daha düzenli bir iş akışına dönüştürün.</p>
-          <div class="problem-list">
-            <article class="problem-item">
-              <span class="problem-symbol">!</span>
-              <div><strong>Eksik veya okunaksız formlar</strong><p>Elle doldurulan kayıtlar sonradan anlaşılması zor bilgilere ve tekrar işlere neden olabilir.</p></div>
-            </article>
-            <article class="problem-item">
-              <span class="problem-symbol">⌕</span>
-              <div><strong>Geçmiş kayda ulaşmak zor</strong><p>Dosyalar arasında müşteri, tarih veya yapılan işlem bazında arama yapmak zaman alır.</p></div>
-            </article>
-            <article class="problem-item">
-              <span class="problem-symbol">↻</span>
-              <div><strong>Tekrarlanan ofis işleri</strong><p>Formu temize çekmek, PDF hazırlamak ve belgeyi doğru yerde saklamak ek iş yükü oluşturur.</p></div>
-            </article>
-          </div>
-        </div>
-        <div class="solution-panel">
-          <span class="eyebrow">MG Dijital ile</span>
-          <h3>Sahada dijital kayıt, ofiste hazır rapor.</h3>
-          <div class="solution-list">
-            <div class="solution-row"><span class="solution-check">✓</span><div><strong>Tek ekrandan dijital form</strong><p>Bakım, arıza, onarım ve keşif kayıtlarını aynı platformda tutun.</p></div></div>
-            <div class="solution-row"><span class="solution-check">✓</span><div><strong>Azalan iş ve kâğıt yükü</strong><p>Fiziksel evrakları ortadan kaldırarak operasyonel süreçlerinizi hızlandırın ve zamandan tasarruf edin.</p></div></div>
-            <div class="solution-row"><span class="solution-check">✓</span><div><strong>Teknisyen ve müşteri imzası</strong><p>Servis kaydına ilgili kişilerin imzalarını ekleyin.</p></div></div>
-            <div class="solution-row"><span class="solution-check">✓</span><div><strong>PDF oluşturma ve arşivleme</strong><p>Formu standart bir rapora dönüştürün, daha sonra kolayca bulun.</p></div></div>
-            <div class="solution-row"><span class="solution-check">✓</span><div><strong>Firma ve kullanıcı yönetimi</strong><p>Müşteri kayıtlarını düzenli tutun, role göre erişimleri yönetin.</p></div></div>
-          </div>
-        </div>
+  <section class="content-section" id="ozellikler" data-mg-section="features">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Platform özellikleri</span>
+        <h2>Servis formları için gerekenler, tek yerde.</h2>
+        <p class="section-intro">Kâğıt sürecinin dijital karşılığını oluşturmak için tasarlanan temel işlevler; teknisyenden ofis yöneticisine kadar tüm süreci destekler.</p>
       </div>
-    </section>
-
-    <section class="content-section" id="ozellikler">
-      <div class="wrap">
-        <div class="section-head center">
-          <span class="eyebrow">Platform özellikleri</span>
-          <h2>Servis formları için gerekenler, tek yerde.</h2>
-          <p class="section-intro">Kâğıt sürecinin dijital karşılığını oluşturmak için tasarlanan temel işlevler; teknisyenden ofis yöneticisine kadar tüm süreci destekler.</p>
-        </div>
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8M8 2h8v4H8z"/><rect x="4" y="4" width="16" height="18" rx="2"/><path d="m8 12 2 2 5-5M8 18h8"/></svg></div>
-            <h3>Dijital servis formları</h3><p>Bakım, arıza, onarım ve keşif kayıtlarını kâğıt kullanmadan doldurun ve yönetin.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 19c4-1 6-4 8-7s4-5 8-6M5 5l2 2M16 17l3 2"/><path d="M3 21h18"/></svg></div>
-            <h3>Dijital imza</h3><p>Teknisyen ve müşteri yetkilisinin imzalarını servis kaydına ekleyin.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h7"/><path d="M3 6v16"/></svg></div>
-            <h3>Otomatik PDF raporu</h3><p>Tamamlanan servis formunu indirilebilir ve arşivlenebilir PDF raporuna dönüştürün.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M7 2v4M17 2v4M3 9h18M7 13h4M7 17h7"/></svg></div>
-            <h3>Firma ve servis geçmişi</h3><p>Müşteri firmalarını ve geçmiş işlemleri tek bir merkezden takip edin.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M7.5 10.5h6"/></svg></div>
-            <h3>Hızlı arama ve filtreleme</h3><p>Geçmiş servis kayıtlarını müşteri, tarih ve form bilgilerine göre bulun.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/></svg></div>
-            <h3>Yetki ve güvenlik</h3><p>Admin ve teknisyen rolleriyle kullanıcı erişimlerini ayırın; SSL korumalı altyapıdan yararlanın.</p>
-          </article>
-        </div>
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M8 4h8M8 2h8v4H8z"/><rect x="4" y="4" width="16" height="18" rx="2"/><path d="m8 12 2 2 5-5M8 18h8"/></svg></div>
+          <h3>Dijital servis formları</h3><p>Bakım, arıza, onarım ve keşif kayıtlarını kâğıt kullanmadan doldurun ve yönetin.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 19c4-1 6-4 8-7s4-5 8-6M5 5l2 2M16 17l3 2"/><path d="M3 21h18"/></svg></div>
+          <h3>Dijital imza</h3><p>Teknisyen ve müşteri yetkilisinin imzalarını servis kaydına ekleyin.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h7"/><path d="M3 6v16"/></svg></div>
+          <h3>Otomatik PDF raporu</h3><p>Tamamlanan servis formunu indirilebilir ve arşivlenebilir PDF raporuna dönüştürün.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M7 2v4M17 2v4M3 9h18M7 13h4M7 17h7"/></svg></div>
+          <h3>Firma ve servis geçmişi</h3><p>Müşteri firmalarını ve geçmiş işlemleri tek bir merkezden takip edin.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M7.5 10.5h6"/></svg></div>
+          <h3>Hızlı arama ve filtreleme</h3><p>Geçmiş servis kayıtlarını müşteri, tarih ve form bilgilerine göre bulun.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Yetki ve güvenlik</h3><p>Admin ve teknisyen rolleriyle kullanıcı erişimlerini ayırın; SSL korumalı altyapıdan yararlanın.</p>
+        </article>
       </div>
-    </section>
-
-    <section class="content-section steps-section" id="nasil-calisir">
-      <div class="wrap">
-        <div class="section-head center">
-          <span class="eyebrow">Nasıl çalışır?</span>
-          <h2>Formdan arşive, üç adımda.</h2>
-          <p class="section-intro">Servis ekibinin sahada tamamladığı işlem, ofiste yeniden evrak hazırlamayı gerektirmeden dijital kayda dönüşür.</p>
-        </div>
-        <div class="steps-grid">
-          <article class="step-card"><div class="step-num">01</div><h3>Servis formunu doldurun</h3><p>Teknisyen; müşteri, işlem, kontrol ve açıklama bilgilerini dijital form üzerinden kaydeder.</p></article>
-          <article class="step-card"><div class="step-num">02</div><h3>İmzaları tamamlayın</h3><p>Teknisyen ve müşteri yetkilisinin imzaları aynı servis kaydına eklenir.</p></article>
-          <article class="step-card"><div class="step-num">03</div><h3>PDF ve arşiv hazır</h3><p>Form PDF olarak oluşturulur, geçmiş servis kayıtları arasından daha sonra bulunabilir.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section" id="sektorler">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow">Kullanım alanları</span>
-          <h2>Tüm sektörler için esnek yapı.</h2>
-          <p class="section-intro">İşletmenizin faaliyet alanı ne olursa olsun; bakım, arıza ve saha servis operasyonlarınızı tek bir dijital platform üzerinden kolayca yönetin.</p>
-        </div>
-        <div class="sectors-grid">
-
-          <!-- Kart 1 -->
-          <article class="sector-card">
-            <div class="sector-top-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 22c4.4 0 7-3 7-7 0-2.6-1.5-4.7-3.5-6.5.1 2-1.1 3.1-2.4 3.8C13.5 8.4 11.8 4.8 8.5 2 9 6.7 5 9.3 5 14.5 5 18.9 8 22 12 22Z"/>
-                <path d="M12 22c-2 0-3.5-1.5-3.5-3.5 0-1.5.8-2.7 2.3-4 .2 1.4 1.1 2.1 2 2.6 1.2 1.6.6 4.9-.8 4.9Z"/>
-              </svg>
-            </div>
-            <h3>Yangın ve Güvenlik</h3>
-            <p>Yangın pompası, söndürme sistemleri ve güvenlik ekipmanlarının periyodik bakım ile arıza kayıtları.</p>
-          </article>
-
-          <!-- Kart 2 -->
-          <article class="sector-card">
-            <div class="sector-top-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 10h18M5 10V5h14v5M7 10v9M17 10v9M4 19h16M9 14h6"/>
-              </svg>
-            </div>
-            <h3>HVAC ve İklimlendirme</h3>
-            <p>Klima, havalandırma ve soğutma sistemlerine ait periyodik bakım, arıza ve onarım formlarının dijital takibi.</p>
-          </article>
-
-          <!-- Kart 3 -->
-          <article class="sector-card">
-            <div class="sector-top-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 2 4 14h7l-1 8 10-13h-7z"/>
-              </svg>
-            </div>
-            <h3>Elektrik ve Teknik Servis</h3>
-            <p>Saha kontrolü, pano bakımları, keşif ve diğer tüm elektrik/teknik servis işlemlerinin kayıt altına alınması.</p>
-          </article>
-
-          <!-- Kart 4 -->
-          <article class="sector-card">
-            <div class="sector-top-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-              </svg>
-            </div>
-            <h3>Makine ve Tesis Yönetimi</h3>
-            <p>Endüstriyel tesislerdeki iş makineleri, üretim bantları ve genel tesis bakım formlarının dijitalleştirilmesi.</p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section about-section" id="hakkimda">
-      <div class="wrap about-grid">
-        <div class="about-visual">
-          <div><h3>Gerçek iş süreçlerinden doğan bir dijital çözüm.</h3><p>MG Dijital Tasarım ve Web Çözümleri tarafından geliştirilen, servis ekiplerinin günlük işini kolaylaştırmaya odaklanan bir platform.</p></div>
-        </div>
-        <div class="about-copy">
-          <span class="eyebrow">Geliştirme yaklaşımı</span>
-          <h2>İhtiyaca göre geliştirilen, sade bir sistem.</h2>
-          <p>MG Dijital olarak odağım; bakım, onarım ve teknik servis firmalarının kâğıt üzerinde yürüttüğü form, imza ve arşiv süreçlerini düzenli bir dijital akışa taşımak. Amaç, mevcut işleyişi gereksiz karmaşıklık eklemeden kolaylaştırmak.</p>
-          <p>Platform; kullanıcı ve rol yönetimi, müşteri kayıtları, imzalı servis belgeleri ve aranabilir geçmiş kayıtlar etrafında tasarlanıyor.</p>
-          <div class="stack-list" aria-label="Kullanılan teknolojiler"><span class="stack-pill">HTML</span><span class="stack-pill">React</span><span class="stack-pill">Java</span><span class="stack-pill">JavaScript</span><span class="stack-pill">Spring Boot</span><span class="stack-pill">PostgreSQL</span><span class="stack-pill">Docker</span><span class="stack-pill">Cloudflare / SSL</span></div>
-          <div class="about-note"><span class="note-mark">↗</span><div><strong>Ürünün odağı net</strong><span>Genel amaçlı bir ajans hizmeti değil; saha ve servis formlarını dijitalleştirmeye yönelik ürün geliştirme çalışması.</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact-section" id="demo">
-      <div class="wrap contact-panel">
-        <div class="contact-copy">
-          <span class="eyebrow">Birlikte değerlendirelim</span>
-          <h2>Servis formlarınızı dijitale taşımaya hazır mısınız?</h2>
-          <p>Bakım, onarım ve saha servis süreçlerinizi anlatın. Mevcut form yapınızı nasıl dijitalleştirebileceğimizi birlikte değerlendirelim.</p>
-        </div>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="iletisim.html">Demo görüşmesi talep et <span class="arrow">↗</span></a>
-          <a class="btn btn-ghost" href="tel:+905342490642">Telefonla iletişime geç</a>
-          <span class="contact-hint">Herhangi bir taahhüt olmadan tanışma görüşmesi.</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-main">
-      <div class="footer-brand">
-        <a class="brand" href="#anasayfa">
-          <!-- Footer Logosu -->
-          <img src="img/logo.png" alt="MG Dijital Logo" class="site-logo">
-          <span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span>
-        </a>
-        <p>Bakım, onarım ve teknik servis süreçleri için dijital form, imza ve arşiv çözümü.</p>
-      </div>
-      <div class="footer-links"><a href="#cozum">Çözüm</a><a href="#ozellikler">Özellikler</a><a href="#sektorler">Sektörler</a><a href="mailto:info@mgdijitalcozumler.com">E-posta</a><a href="[LINKEDIN]" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
     </div>
-    <div class="wrap footer-bottom"><span>© <span id="year">2026</span> MG Dijital Tasarım ve Web Çözümleri. Tüm hakları saklıdır.</span><span>Geliştiren: <a href="#hakkimda">Muhammed GÜNGÖRMÜŞ</a></span></div>
-  </footer>
+  </section>
+
+  <section class="content-section steps-section" id="nasil-calisir" data-mg-section="how_it_works">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Nasıl çalışır?</span>
+        <h2>Formdan arşive, üç adımda.</h2>
+        <p class="section-intro">Servis ekibinin sahada tamamladığı işlem, ofiste yeniden evrak hazırlamayı gerektirmeden dijital kayda dönüşür.</p>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card"><div class="step-num">01</div><h3>Servis formunu doldurun</h3><p>Teknisyen; müşteri, işlem, kontrol ve açıklama bilgilerini dijital form üzerinden kaydeder.</p></article>
+        <article class="step-card"><div class="step-num">02</div><h3>İmzaları tamamlayın</h3><p>Teknisyen ve müşteri yetkilisinin imzaları aynı servis kaydına eklenir.</p></article>
+        <article class="step-card"><div class="step-num">03</div><h3>PDF ve arşiv hazır</h3><p>Form PDF olarak oluşturulur, geçmiş servis kayıtları arasından daha sonra bulunabilir.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="sektorler" data-mg-section="sectors">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Kullanım alanları</span>
+        <h2>Tüm sektörler için esnek yapı.</h2>
+        <p class="section-intro">İşletmenizin faaliyet alanı ne olursa olsun; bakım, arıza ve saha servis operasyonlarınızı tek bir dijital platform üzerinden kolayca yönetin.</p>
+      </div>
+      <div class="sectors-grid">
+
+        <!-- Kart 1 -->
+        <article class="sector-card">
+          <div class="sector-top-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 22c4.4 0 7-3 7-7 0-2.6-1.5-4.7-3.5-6.5.1 2-1.1 3.1-2.4 3.8C13.5 8.4 11.8 4.8 8.5 2 9 6.7 5 9.3 5 14.5 5 18.9 8 22 12 22Z"/>
+              <path d="M12 22c-2 0-3.5-1.5-3.5-3.5 0-1.5.8-2.7 2.3-4 .2 1.4 1.1 2.1 2 2.6 1.2 1.6.6 4.9-.8 4.9Z"/>
+            </svg>
+          </div>
+          <h3>Yangın ve Güvenlik</h3>
+          <p>Yangın pompası, söndürme sistemleri ve güvenlik ekipmanlarının periyodik bakım ile arıza kayıtları.</p>
+        </article>
+
+        <!-- Kart 2 -->
+        <article class="sector-card">
+          <div class="sector-top-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10h18M5 10V5h14v5M7 10v9M17 10v9M4 19h16M9 14h6"/>
+            </svg>
+          </div>
+          <h3>HVAC ve İklimlendirme</h3>
+          <p>Klima, havalandırma ve soğutma sistemlerine ait periyodik bakım, arıza ve onarım formlarının dijital takibi.</p>
+        </article>
+
+        <!-- Kart 3 -->
+        <article class="sector-card">
+          <div class="sector-top-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2 4 14h7l-1 8 10-13h-7z"/>
+            </svg>
+          </div>
+          <h3>Elektrik ve Teknik Servis</h3>
+          <p>Saha kontrolü, pano bakımları, keşif ve diğer tüm elektrik/teknik servis işlemlerinin kayıt altına alınması.</p>
+        </article>
+
+        <!-- Kart 4 -->
+        <article class="sector-card">
+          <div class="sector-top-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3>Makine ve Tesis Yönetimi</h3>
+          <p>Endüstriyel tesislerdeki iş makineleri, üretim bantları ve genel tesis bakım formlarının dijitalleştirilmesi.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section about-section" id="hakkimda" data-mg-section="developer">
+    <div class="wrap about-grid">
+      <div class="about-visual">
+        <div><h3>Gerçek iş süreçlerinden doğan bir dijital çözüm.</h3><p>MG Dijital Tasarım ve Web Çözümleri tarafından geliştirilen, servis ekiplerinin günlük işini kolaylaştırmaya odaklanan bir platform.</p></div>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">Geliştirme yaklaşımı</span>
+        <h2>İhtiyaca göre geliştirilen, sade bir sistem.</h2>
+        <p>MG Dijital olarak odağım; bakım, onarım ve teknik servis firmalarının kâğıt üzerinde yürüttüğü form, imza ve arşiv süreçlerini düzenli bir dijital akışa taşımak. Amaç, mevcut işleyişi gereksiz karmaşıklık eklemeden kolaylaştırmak.</p>
+        <p>Platform; kullanıcı ve rol yönetimi, müşteri kayıtları, imzalı servis belgeleri ve aranabilir geçmiş kayıtlar etrafında tasarlanıyor.</p>
+        <div class="stack-list" aria-label="Kullanılan teknolojiler"><span class="stack-pill">HTML</span><span class="stack-pill">React</span><span class="stack-pill">Java</span><span class="stack-pill">JavaScript</span><span class="stack-pill">Spring Boot</span><span class="stack-pill">PostgreSQL</span><span class="stack-pill">Docker</span><span class="stack-pill">Cloudflare / SSL</span></div>
+        <div class="about-note"><span class="note-mark">↗</span><div><strong>Ürünün odağı net</strong><span>Genel amaçlı bir ajans hizmeti değil; saha ve servis formlarını dijitalleştirmeye yönelik ürün geliştirme çalışması.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="demo" data-mg-section="contact_cta">
+    <div class="wrap contact-panel">
+      <div class="contact-copy">
+        <span class="eyebrow">Birlikte değerlendirelim</span>
+        <h2>Servis formlarınızı dijitale taşımaya hazır mısınız?</h2>
+        <p>Bakım, onarım ve saha servis süreçlerinizi anlatın. Mevcut form yapınızı nasıl dijitalleştirebileceğimizi birlikte değerlendirelim.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="iletisim.html" data-mg-event="mg_contact_click" data-mg-label="request_demo_meeting" data-mg-placement="contact">Demo görüşmesi talep et <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="tel:+905342490642" data-mg-event="mg_phone_click" data-mg-label="call_contact" data-mg-placement="contact">Telefonla iletişime geç</a>
+        <span class="contact-hint">Herhangi bir taahhüt olmadan tanışma görüşmesi.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="#anasayfa" data-mg-event="mg_nav_click" data-mg-label="home_logo" data-mg-placement="footer">
+        <!-- Footer Logosu -->
+        <img src="img/logo.png" alt="MG Dijital Logo" class="site-logo">
+        <span class="brand-name"><strong>MG Dijital</strong><span>TASARIM VE WEB ÇÖZÜMLERİ</span></span>
+      </a>
+      <p>Bakım, onarım ve teknik servis süreçleri için dijital form, imza ve arşiv çözümü.</p>
+    </div>
+    <div class="footer-links"><a href="#cozum" data-mg-event="mg_nav_click" data-mg-label="solution" data-mg-placement="footer">Çözüm</a><a href="#ozellikler" data-mg-event="mg_nav_click" data-mg-label="features" data-mg-placement="footer">Özellikler</a><a href="#sektorler" data-mg-event="mg_nav_click" data-mg-label="sectors" data-mg-placement="footer">Sektörler</a><a href="mailto:info@mgdijitalcozumler.com" data-mg-event="mg_email_click" data-mg-label="email_contact" data-mg-placement="footer">E-posta</a><a hidden href="[LINKEDIN]" target="_blank" rel="noopener noreferrer" data-mg-event="mg_social_click" data-mg-label="linkedin_placeholder" data-mg-placement="footer">LinkedIn ↗</a></div>
+  </div>
+  <div class="wrap" style="padding-bottom:12px"><button type="button" class="mg-consent-settings" id="mgConsentSettings" hidden>Analitik tercihleri</button></div>
+  <div class="wrap footer-bottom"><span>© <span id="year">2026</span> MG Dijital Tasarım ve Web Çözümleri. Tüm hakları saklıdır.</span><span>Geliştiren: <a href="#hakkimda" data-mg-event="mg_nav_click" data-mg-label="developer" data-mg-placement="footer">Muhammed GÜNGÖRMÜŞ</a></span></div>
+</footer>
 
   <script>
     // Preloader ve Menü İşlemleri
@@ -704,10 +707,21 @@
         });
       });
 
-      if(year) {
-        year.textContent = new Date().getFullYear();
-      }
-    })();
-  </script>
+    if(year) {
+      year.textContent = new Date().getFullYear();
+    }
+  })();
+</script>
+
+<!-- Analitik tercihi verilmeden Google Analytics yuklenmez. -->
+<div class="mg-consent" id="mgConsentBanner" role="region" aria-label="Analitik cerez tercihleri" hidden>
+  <strong>Analitik tercihleri</strong>
+  <p>Ziyaretleri ve sayfa/buton etkilesimlerini olcmek icin, onay verirseniz Google Analytics kullaniriz. Reddetmeniz siteyi kullanmanizi engellemez. Tercihinizi sayfanin altindaki "Analitik tercihleri" baglantisindan degistirebilirsiniz.</p>
+  <div class="mg-consent-actions">
+    <button type="button" data-mg-consent="reject">Yalnizca gerekli</button>
+    <button type="button" data-mg-consent="accept">Analitige izin ver</button>
+  </div>
+</div>
+<script src="js/mg-analytics-events.js" defer></script>
 </body>
 </html>
